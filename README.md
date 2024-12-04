@@ -1,2 +1,1 @@
-# petOne
-# petOne
+# Pet project on Golang

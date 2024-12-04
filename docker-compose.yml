@@ -1,0 +1,13 @@
+services:
+    db:
+        image: postgres
+        restart: always
+        shm_size: 128mb
+        environment:
+            POSTGRES_HOST_AUTH_METHOD: trust
+            POSTGRES_PASSWORD: pass
+        volumes:
+            - pgData:/var/lib/postgresql/data
+
+volumes:
+    pgData:

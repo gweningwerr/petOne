@@ -1,0 +1,2 @@
+bind_addr = "8989"
+logger_level = "info"

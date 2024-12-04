@@ -1,0 +1,9 @@
+/.idea/
+
+###> docker-compose ###
+docker-compose.override.yml
+###< docker-compose ###
+
+###> configs ###
+/configs/*
+###< configs ###
