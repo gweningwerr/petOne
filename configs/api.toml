@@ -1,2 +1,6 @@
+[web-server]
 bind_addr = "8989"
 logger_level = "info"
+
+[storage]
+db_uri = "host=localhost port=8932 user=postgres password=pass dbname=pet_one sslmode=disable"

@@ -2,14 +2,16 @@ package api
 
 import (
 	"github.com/gorilla/mux"
+	"github.com/gweningwarr/petOne/storage"
 	"github.com/sirupsen/logrus"
 	"net/http"
 )
 
 type API struct {
-	config *Config
-	logger *logrus.Logger
-	router *mux.Router
+	config  *Config
+	logger  *logrus.Logger
+	router  *mux.Router
+	storage *storage.Storage
 }
 
 func New(config *Config) *API {
@@ -29,5 +31,9 @@ func (api *API) Start() error {
 
 	api.configureRouterField()
 
-	return http.ListenAndServe(":"+api.config.BindAddr, api.router)
+	if err := api.configureStorageField(); err != nil {
+		return err
+	}
+
+	return http.ListenAndServe(api.config.BindAddr, api.router)
 }

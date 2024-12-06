@@ -1,6 +1,7 @@
 package api
 
 import (
+	"github.com/gweningwarr/petOne/storage"
 	"github.com/sirupsen/logrus"
 	"net/http"
 )
@@ -24,4 +25,16 @@ func (api *API) configureRouterField() {
 			return
 		}
 	})
+}
+
+func (api *API) configureStorageField() error {
+	storage := storage.New(api.config.Storage)
+
+	if err := storage.Open(); err != nil {
+		return err
+	}
+
+	api.storage = storage
+
+	return nil
 }
