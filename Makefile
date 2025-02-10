@@ -1,7 +1,7 @@
 PORT_DB := 8932
 POSTGRES_DB := pet_one
-POSTGRES_USER := postgres
-POSTGRES_PASSWORD := pass
+POSTGRES_USER := pet_one
+POSTGRES_PASSWORD := pass123
 
 
 PWD := $(shell pwd)
@@ -12,8 +12,14 @@ DOCKER := DOCKER_BUILDKIT=1 $(shell which docker)
 .PHONY: build
 .DEFAULT_GOAL := build
 
-up-build:
+up:
+	docker-compose up -d
+
+start:
 	docker-compose up -d --build
+
+down:
+	docker-compose down
 
 build:
 	go build -v ./cmd/api/

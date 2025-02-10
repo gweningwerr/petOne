@@ -1,8 +1,14 @@
 CREATE TABLE users
 (
-    id            INTEGER     NOT NULL PRIMARY KEY,
-    name          VARCHAR     NOT NULL,
-    email         VARCHAR     NOT NULL UNIQUE,
-    age           INTEGER     NOT NULL,
-    password_hash VARCHAR(32) NOT NULL
+    id       BIGSERIAL NOT NULL PRIMARY KEY,
+    login    VARCHAR   NOT NULL UNIQUE,
+    password VARCHAR   NOT NULL
+);
+
+CREATE TABLE articles
+(
+    id BIGSERIAL NOT NULL PRIMARY KEY,
+    title VARCHAR NOT NULL UNIQUE,
+    author VARCHAR NOT NULL,
+    content VARCHAR NOT NULL
 );

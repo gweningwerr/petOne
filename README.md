@@ -16,7 +16,7 @@
 migrate create -seq -ext -digits sql -dir migrations pet_one
 ```
 
-Применение миграции port=8932 user=postgres password=pass dbname=pet_one
+Применение миграции port=8932 user=pet_one password=pass123 dbname=pet_one
 ```bash
 # добавляет миграцию
 migrate -path migrations -database "postgres://localhost:8932/pet_one?sslmode=disable&user=postgres&password=pass" up

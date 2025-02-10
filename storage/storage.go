@@ -7,8 +7,10 @@ import (
 )
 
 type Storage struct {
-	config *Config
-	db     *sql.DB
+	config            *Config
+	db                *sql.DB
+	userRepository    *UserRepository
+	articleRepository *ArticleRepository
 }
 
 func New(config *Config) *Storage {
@@ -40,4 +42,24 @@ func (storage *Storage) Close() {
 	if err != nil {
 		return
 	}
+}
+
+func (storage *Storage) User() *UserRepository {
+	if storage.userRepository == nil {
+		storage.userRepository = &UserRepository{
+			storage: storage,
+		}
+	}
+
+	return storage.userRepository
+}
+
+func (storage *Storage) Article() *ArticleRepository {
+	if storage.articleRepository == nil {
+		storage.articleRepository = &ArticleRepository{
+			storage: storage,
+		}
+	}
+
+	return storage.articleRepository
 }

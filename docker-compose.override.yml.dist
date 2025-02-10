@@ -2,3 +2,16 @@ services:
     db:
         ports:
             - '8932:5432'
+    rabbitmq:
+        ports:
+            - "8672:5672"
+            - "18672:15672"
+    kafka:
+        ports:
+            - "8092:9092"
+    kafka-ui:
+        ports:
+            - 8082:8080
+    clickhouse-server:
+        ports:
+            - 8123:8123
