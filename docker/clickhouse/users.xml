@@ -64,9 +64,9 @@
                  How to generate double SHA1:
                  Execute: PASSWORD=$(base64 < /dev/urandom | head -c8); echo "$PASSWORD"; echo -n "$PASSWORD" | sha1sum | tr -d '-' | xxd -r -p | sha1sum | tr -d '-'
                  In first line will be password and in second - corresponding double SHA1.
-            -->
-            <password></password>
+             <password></password>-->
 
+            <password_sha256_hex>9b8769a4a742959a2d0298c36fb70623f2dfacda8436237df08d8dfd5b37374c</password_sha256_hex>
             <!-- List of networks with open access.
 
                  To open access from everywhere, specify:

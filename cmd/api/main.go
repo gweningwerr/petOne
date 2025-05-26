@@ -28,5 +28,4 @@ func main() {
 	server := api.New(config)
 
 	log.Fatal(server.Start())
-
 }

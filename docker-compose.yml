@@ -11,12 +11,14 @@ services:
             POSTGRES_DB: pet_one
         volumes:
             - pgData:/var/lib/postgresql/data
+
     rabbitmq:
         image: rabbitmq:3-management
         environment:
             - RABBITMQ_DEFAULT_VHOST=local
         volumes:
             - 'rabbitmq_data:/data'
+
     kafka:
         image: apache/kafka:latest
         hostname: broker
@@ -37,18 +39,39 @@ services:
             KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
             KAFKA_LOG_DIRS: /tmp/kraft-combined-logs
             CLUSTER_ID: MkU3OEVBNTcwNTJENDM2Qk
+
     kafka-ui:
         image: provectuslabs/kafka-ui:latest
         environment:
             DYNAMIC_CONFIG_ENABLED: true
+
     clickhouse-server:
         image: yandex/clickhouse-server
         container_name: clickhouse-server
         volumes:
-            - ./docker/clickhouse/:/etc/clickhouse-server/:rw
+#            - ./docker/clickhouse/:/etc/clickhouse-server/:rw
             - clickhouseDb:/var/lib/clickhouse
         ulimits:
             nofile: 262144
+
+    twportainer:
+        image: portainer/portainer-ce:latest
+        container_name: twportainer
+        environment:
+            - TZ=Europe/Moscow
+        volumes:
+            - /var/run/docker.sock:/var/run/docker.sock
+            - /opt/twportainer/portainer_data:/data
+        ports:
+            - "18000:8000"
+            - "19443:9443"
+        restart: always
+    grafana:
+        image: grafana/grafana-enterprise
+        container_name: grafana
+        restart: unless-stopped
+        ports:
+            - '3001:3000'
 volumes:
     pgData:
     rabbitmq_data:
